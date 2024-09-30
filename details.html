@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Member Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f5;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .relation-info {
+            margin-top: 20px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="memberImage" src="" alt="Member Image">
+        <h2 id="memberName">Name</h2>
+        <p id="memberProfession">Profession</p>
+        <p id="memberRelation">Relation: <span id="relation"></span></p>
+        <p class="relation-info">This person is from the <span id="familySide"></span>'s side.</p>
+        <a class="back-btn" href="index.html">Back to Family Tree</a>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const relation = urlParams.get('relation');
+            const profession = urlParams.get('profession');
+            const side = urlParams.get('side');
+            const image = urlParams.get('image');
+            return { name, relation, profession, side, image };
+        }
+
+        const { name, relation, profession, side, image } = getQueryParams();
+        document.getElementById('memberName').textContent = name;
+        document.getElementById('memberRelation').textContent = relation.charAt(0).toUpperCase() + relation.slice(1);
+        document.getElementById('memberProfession').textContent = profession;
+        document.getElementById('memberImage').src = image;
+        document.getElementById('familySide').textContent = side === 'father' ? 'Father' : 'Mother';
+    </script>
+
+</body>
+</html>

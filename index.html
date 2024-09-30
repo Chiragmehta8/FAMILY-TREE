@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehta Family Tree Flowchart with Filter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5af19, #f12711);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .generation {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .member {
+            position: relative;
+            margin: 0 30px;
+            padding: 10px;
+            width: 140px;
+            background-color: #fff;
+            border: 1px solid #c3e4d1;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #333;
+        }
+
+        .member:hover {
+            transform: translateY(-10px);
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .member p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .generation {
+            position: relative;
+        }
+
+        .generation .connector {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: #999;
+            z-index: -1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mehta Family Tree</h1>
+
+    <div class="filter-buttons">
+        <button onclick="filterFamily('father')">Father's Side</button>
+        <button onclick="filterFamily('mother')">Mother's Side</button>
+        <button onclick="filterFamily('both')">Show Both</button>
+    </div>
+
+    <div class="tree" id="familyTree">
+        <div class="generation fade-in">
+            <a class="member" data-side="father" href="details.html?name=Vijay%20Mehta&relation=grandfather&side=father&profession=Retired&image=https://randomuser.me/api/portraits/men/5.jpg">
+                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Vijay Mehta">
+                <p>Vijay Mehta</p>
+            </a>
+            <a class="member" data-side="mother" href="details.html?name=Sunita%20Mehta&relation=grandmother&side=mother&profession=Retired&image=https://randomuser.me/api/portraits/women/5.jpg">
+                <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Sunita Mehta">
+                <p>Sunita Mehta</p>
+            </a>
+        </div>
+
+        <div class="generation fade-in">
+            <div class="connector"></div>
+            <a class="member" data-side="father" href="details.html?name=Rajesh%20Mehta&relation=father&side=father&profession=Engineer&image=https://randomuser.me/api/portraits/men/1.jpg">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Rajesh Mehta">
+                <p>Rajesh Mehta</p>
+            </a>
+            <a class="member" data-side="mother" href="details.html?name=Pooja%20Mehta&relation=mother&side=mother&profession=Doctor&image=https://randomuser.me/api/portraits/women/1.jpg">
+                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Pooja Mehta">
+                <p>Pooja Mehta</p>
+            </a>
+        </div>
+
+        <div class="generation fade-in">
+            <div class="connector"></div>
+            <a class="member" data-side="father" href="details.html?name=Rahul%20Mehta&relation=son&side=father&profession=Student&image=https://randomuser.me/api/portraits/men/2.jpg">
+                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Rahul Mehta">
+                <p>Rahul Mehta</p>
+            </a>
+            <a class="member" data-side="mother" href="details.html?name=Neha%20Mehta&relation=daughter&side=mother&profession=Student&image=https://randomuser.me/api/portraits/women/2.jpg">
+                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Neha Mehta">
+                <p>Neha Mehta</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function filterFamily(side) {
+            const members = document.querySelectorAll('.member');
+            members.forEach(member => {
+                const memberSide = member.getAttribute('data-side');
+                if (side === 'both') {
+                    member.style.display = 'flex';
+                } else {
+                    if (memberSide === side) {
+                        member.style.display = 'flex';
+                    } else {
+                        member.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        filterFamily('both');
+    </script>
+
+</body>
+</html>
