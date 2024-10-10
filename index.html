@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehta Family Tree Flowchart with Filter</title>
+    <title>Mehta Family Tree</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -56,12 +56,11 @@
             position: relative;
             margin: 0 30px;
             padding: 10px;
-            width: 140px;
+            width: 160px;
             background-color: #fff;
             border: 1px solid #c3e4d1;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -83,24 +82,39 @@
 
         .member p {
             margin: 0;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
+            text-align: center;
         }
 
-        .generation {
-            position: relative;
-        }
-
-        .generation .connector {
+        /* Connectors and lines for flowchart */
+        .generation::before, .generation::after {
+            content: '';
             position: absolute;
-            top: -10px;
-            left: 50%;
-            width: 2px;
-            height: 20px;
+            top: 50%;
+            height: 2px;
             background-color: #999;
             z-index: -1;
         }
 
+        .generation::before {
+            left: 0;
+            width: 50%;
+        }
+
+        .generation::after {
+            right: 0;
+            width: 50%;
+        }
+
+        .connector {
+            width: 2px;
+            height: 30px;
+            background-color: #999;
+            margin: 0 auto;
+        }
+
+        /* Entrance animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -116,58 +130,520 @@
             opacity: 0;
             animation: fadeInUp 0.8s forwards;
         }
+
     </style>
 </head>
 <body>
 
     <h1>Mehta Family Tree</h1>
 
+    <!-- Filter Buttons -->
     <div class="filter-buttons">
         <button onclick="filterFamily('father')">Father's Side</button>
         <button onclick="filterFamily('mother')">Mother's Side</button>
-        <button onclick="filterFamily('both')">Show Both</button>
     </div>
 
+    <!-- Family Tree -->
     <div class="tree" id="familyTree">
-        <div class="generation fade-in">
-            <a class="member" data-side="father" href="details.html?name=Vijay%20Mehta&relation=grandfather&side=father&profession=Retired&image=https://randomuser.me/api/portraits/men/5.jpg">
-                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Vijay Mehta">
-                <p>Vijay Mehta</p>
-            </a>
-            <a class="member" data-side="mother" href="details.html?name=Sunita%20Mehta&relation=grandmother&side=mother&profession=Retired&image=https://randomuser.me/api/portraits/women/5.jpg">
-                <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Sunita Mehta">
-                <p>Sunita Mehta</p>
-            </a>
+
+        <!-- Father's Side -->
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sohanlal Mehta">
+                <p>Sohanlal Mehta</p>
+                <p>Great Great Great Great Great Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Nandram Mehta">
+                <p>Nandram Mehta</p>
+                <p>Great Great Great Great Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Ramdayal Mehta">
+                <p>Ramdayal Mehta</p>
+                <p>Great Great Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Raghunath Rai Mehta">
+                <p>Raghunath Rai Mehta</p>
+                <p>Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Tejbhan Mehta">
+                <p>Tejbhan Mehta</p>
+                <p>Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dr. Dayanand Mehta">
+                <p>Dr. Dayanand Mehta</p>
+                <p>Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dr. Ashutosh Mehta">
+                <p>Dr. Ashutosh Mehta</p>
+                <p>Father</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sonia Mehta">
+                <p>Sonia Mehta</p>
+                <p>Mother</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Tanmay Mehta">
+                <p>Tanmay Mehta</p>
+                <p>Elder Brother</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Chirag Mehta">
+                <p>Chirag Mehta</p>
+                <p>Myself</p>
+            </div>
+        </div>
+        
+        <!-- Grandaunts and Their Children -->
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Iswari Das Manchanda">
+                <p>Iswari Das Manchanda</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Ashok Manchanda">
+                <p>Ashok Manchanda</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Vijay Manchanda">
+                <p>Vijay Manchanda</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Inder Manchanda">
+                <p>Inder Manchanda</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Kamla Manchanda">
+                <p>Kamla Manchanda</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Savitri Gupta">
+                <p>Savitri Gupta</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Vinod Gupta">
+                <p>Vinod Gupta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Pramod Gupta">
+                <p>Pramod Gupta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dr. Sanjeev Gupta">
+                <p>Dr. Sanjeev Gupta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Satyadevi Madan">
+                <p>Satyadevi Madan</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Mrs. Santosh Madan">
+                <p>Mrs. Santosh Madan</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Davinder">
+                <p>Davinder</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dinesh">
+                <p>Dinesh</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Deepak">
+                <p>Deepak</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Bhagwanta Devi Soni">
+                <p>Bhagwanta Devi Soni</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dr. Kanchan">
+                <p>Dr. Kanchan</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Neelam">
+                <p>Neelam</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Babli">
+                <p>Babli</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Seema">
+                <p>Seema</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Nishi">
+                <p>Nishi</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Mrs. Kanta Arora">
+                <p>Mrs. Kanta Arora</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Anita">
+                <p>Anita</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Jyoti">
+                <p>Jyoti</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Manoj">
+                <p>Manoj</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Rajesh">
+                <p>Rajesh</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <!-- Granduncles and Their Children -->
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Tarachand Mehta">
+                <p>Tarachand Mehta</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Lilly Mehta">
+                <p>Lilly Mehta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Mahinder Mehta">
+                <p>Mahinder Mehta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dolly Mehta">
+                <p>Dolly Mehta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Surindar Mehta">
+                <p>Surindar Mehta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Gulshan Rai Mehta">
+                <p>Gulshan Rai Mehta</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sangeeta Mehta">
+                <p>Sangeeta Mehta</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dhanraj Mehta">
+                <p>Dhanraj Mehta</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Savita">
+                <p>Savita</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Indra Mitra">
+                <p>Indra Mitra</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sweety">
+                <p>Sweety</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Reena">
+                <p>Reena</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sumit">
+                <p>Sumit</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+        
+        <!-- Second Cousins -->
+        <div class="generation fade-in" data-side="father">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Akshay Mehta">
+                <p>Akshay Mehta</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Ekta Mehta">
+                <p>Ekta Mehta</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dr. Sagar Mehta">
+                <p>Dr. Sagar Mehta</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Artika Mehta">
+                <p>Artika Mehta</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Bhavesh Mehta">
+                <p>Bhavesh Mehta</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Shrey">
+                <p>Shrey</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Somesh">
+                <p>Somesh</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Savera">
+                <p>Savera</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Piyush">
+                <p>Piyush</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Ved">
+                <p>Ved</p>
+                <p>Second Cousin</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Salil">
+                <p>Salil</p>
+                <p>Second Cousin</p>
+            </div>
+        </div>
+        
+
+        <!-- Mother's Side -->
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Tej Ban Sachdeva">
+                <p>Tej Ban Sachdeva</p>
+                <p>Great Grandfather</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Gopichand Sachdeva">
+                <p>Gopichand Sachdeva</p>
+                <p>Granduncle</p>
+            </div>
         </div>
 
-        <div class="generation fade-in">
-            <div class="connector"></div>
-            <a class="member" data-side="father" href="details.html?name=Rajesh%20Mehta&relation=father&side=father&profession=Engineer&image=https://randomuser.me/api/portraits/men/1.jpg">
-                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Rajesh Mehta">
-                <p>Rajesh Mehta</p>
-            </a>
-            <a class="member" data-side="mother" href="details.html?name=Pooja%20Mehta&relation=mother&side=mother&profession=Doctor&image=https://randomuser.me/api/portraits/women/1.jpg">
-                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Pooja Mehta">
-                <p>Pooja Mehta</p>
-            </a>
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Santosh Sachdeva">
+                <p>Santosh Sachdeva</p>
+                <p>Grandaunt</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Anil Sachdeva">
+                <p>Anil Sachdeva</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sunita Sachdeva">
+                <p>Sunita Sachdeva</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sunil">
+                <p>Sunil</p>
+                <p>First Cousin Once Removed</p>
+            </div>
         </div>
 
-        <div class="generation fade-in">
-            <div class="connector"></div>
-            <a class="member" data-side="father" href="details.html?name=Rahul%20Mehta&relation=son&side=father&profession=Student&image=https://randomuser.me/api/portraits/men/2.jpg">
-                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Rahul Mehta">
-                <p>Rahul Mehta</p>
-            </a>
-            <a class="member" data-side="mother" href="details.html?name=Neha%20Mehta&relation=daughter&side=mother&profession=Student&image=https://randomuser.me/api/portraits/women/2.jpg">
-                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Neha Mehta">
-                <p>Neha Mehta</p>
-            </a>
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Renu">
+                <p>Renu</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sanjay">
+                <p>Sanjay</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Vinni">
+                <p>Vinni</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Ashish">
+                <p>Ashish</p>
+                <p>First Cousin Twice Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Shikha">
+                <p>Shikha</p>
+                <p>First Cousin Twice Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Yatin">
+                <p>Yatin</p>
+                <p>First Cousin Twice Removed</p>
+            </div>
+        </div>
+
+        <!-- Cousin Thrice Removed -->
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Bhavya">
+                <p>Bhavya</p>
+                <p>First Cousin Thrice Removed</p>
+            </div>
+        </div>
+
+        <!-- More Granduncles and Grandaunts -->
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Jagdish Sachdeva">
+                <p>Jagdish Sachdeva</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Prem">
+                <p>Prem</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Deepa">
+                <p>Deepa</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Poonam">
+                <p>Poonam</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Vijay">
+                <p>Vijay</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Dur Prakash Sachdevji Kaushal">
+                <p>Dur Prakash Sachdevji Kaushal</p>
+                <p>Granduncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Neelam">
+                <p>Neelam</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sanjeev">
+                <p>Sanjeev</p>
+                <p>First Cousin Once Removed</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sudesh Sachdeva">
+                <p>Sudesh Sachdeva</p>
+                <p>Grandaunt</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Rajeev">
+                <p>Rajeev</p>
+                <p>Uncle</p>
+            </div>
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Seema">
+                <p>Seema</p>
+                <p>Aunt</p>
+            </div>
+        </div>
+
+        <div class="generation fade-in" data-side="mother">
+            <div class="member">
+                <img src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg" alt="Sonia">
+                <p>Sonia</p>
+                <p>Mother</p>
+            </div>
         </div>
     </div>
 
     <script>
         function filterFamily(side) {
-            const members = document.querySelectorAll('.member');
+            const members = document.querySelectorAll('.generation');
             members.forEach(member => {
                 const memberSide = member.getAttribute('data-side');
                 if (side === 'both') {
@@ -182,7 +658,8 @@
             });
         }
 
-        filterFamily('both');
+        // Initially show father's side
+        filterFamily('father');
     </script>
 
 </body>
